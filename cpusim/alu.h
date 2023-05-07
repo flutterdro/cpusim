@@ -2,6 +2,7 @@
 #define alu_h
 
 #include <type_traits>
+#include <cinttypes>
 
 enum class FlagRegister : uint8_t {
     Zero            = 0b00000001,

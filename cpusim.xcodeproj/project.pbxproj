@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		08B0A09E2A068EC90060E589 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08B0A09D2A068EC90060E589 /* main.cpp */; };
 		08B0A0AB2A070F8F0060E589 /* alu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08B0A0AA2A070F8F0060E589 /* alu.cpp */; };
+		08B0A0B52A07D4DE0060E589 /* libfmt.9.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 08B0A0B42A07D4DE0060E589 /* libfmt.9.1.0.dylib */; };
+		08B0A0C32A08220C0060E589 /* dissasemble.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08B0A0C22A08220C0060E589 /* dissasemble.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +33,10 @@
 		08B0A0A72A0690AA0060E589 /* alu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = alu.h; sourceTree = "<group>"; };
 		08B0A0A82A0690AA0060E589 /* cu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cu.h; sourceTree = "<group>"; };
 		08B0A0AA2A070F8F0060E589 /* alu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = alu.cpp; sourceTree = "<group>"; };
+		08B0A0B42A07D4DE0060E589 /* libfmt.9.1.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfmt.9.1.0.dylib; path = cpusim/lib/libfmt.9.1.0.dylib; sourceTree = "<group>"; };
+		08B0A0BF2A07FE370060E589 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
+		08B0A0C22A08220C0060E589 /* dissasemble.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = dissasemble.cpp; sourceTree = "<group>"; };
+		08B0A0C62A0822220060E589 /* dissasemble.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dissasemble.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08B0A0B52A07D4DE0060E589 /* libfmt.9.1.0.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -47,8 +54,10 @@
 		08B0A0912A068EC90060E589 = {
 			isa = PBXGroup;
 			children = (
+				08B0A0BF2A07FE370060E589 /* assets */,
 				08B0A09C2A068EC90060E589 /* cpusim */,
 				08B0A09B2A068EC90060E589 /* Products */,
+				08B0A0B32A07D4DE0060E589 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -63,14 +72,24 @@
 		08B0A09C2A068EC90060E589 /* cpusim */ = {
 			isa = PBXGroup;
 			children = (
+				08B0A09D2A068EC90060E589 /* main.cpp */,
 				08B0A0AA2A070F8F0060E589 /* alu.cpp */,
 				08B0A0A72A0690AA0060E589 /* alu.h */,
 				08B0A0A52A0690AA0060E589 /* clock.h */,
 				08B0A0A82A0690AA0060E589 /* cu.h */,
 				08B0A0A62A0690AA0060E589 /* registers.h */,
-				08B0A09D2A068EC90060E589 /* main.cpp */,
+				08B0A0C22A08220C0060E589 /* dissasemble.cpp */,
+				08B0A0C62A0822220060E589 /* dissasemble.h */,
 			);
 			path = cpusim;
+			sourceTree = "<group>";
+		};
+		08B0A0B32A07D4DE0060E589 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				08B0A0B42A07D4DE0060E589 /* libfmt.9.1.0.dylib */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -131,6 +150,7 @@
 			files = (
 				08B0A0AB2A070F8F0060E589 /* alu.cpp in Sources */,
 				08B0A09E2A068EC90060E589 /* main.cpp in Sources */,
+				08B0A0C32A08220C0060E589 /* dissasemble.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,6 +208,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/include";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/lib";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -241,6 +263,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/include";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/lib";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -252,6 +276,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/include";
+				LD_RUNPATH_SEARCH_PATHS = "$(PROJECT_DIR)/lib";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/lib",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -260,6 +290,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/include";
+				LD_RUNPATH_SEARCH_PATHS = "$(PROJECT_DIR)/lib";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/lib",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
