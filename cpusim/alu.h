@@ -16,7 +16,7 @@ FlagRegister operator|(FlagRegister lhs, FlagRegister rhs);
 
 class ArithmeticLogicUnit {
 public:
-
+    void add();
 private:
     uint8_t m_accumulator;
     uint8_t m_tmpAccumulator;
