@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		08B0A09E2A068EC90060E589 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08B0A09D2A068EC90060E589 /* main.cpp */; };
+		08B0A0AB2A070F8F0060E589 /* alu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08B0A0AA2A070F8F0060E589 /* alu.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,11 @@
 /* Begin PBXFileReference section */
 		08B0A09A2A068EC90060E589 /* cpusim */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cpusim; sourceTree = BUILT_PRODUCTS_DIR; };
 		08B0A09D2A068EC90060E589 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		08B0A0A52A0690AA0060E589 /* clock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = clock.h; sourceTree = "<group>"; };
+		08B0A0A62A0690AA0060E589 /* registers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = registers.h; sourceTree = "<group>"; };
+		08B0A0A72A0690AA0060E589 /* alu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = alu.h; sourceTree = "<group>"; };
+		08B0A0A82A0690AA0060E589 /* cu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cu.h; sourceTree = "<group>"; };
+		08B0A0AA2A070F8F0060E589 /* alu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = alu.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +63,11 @@
 		08B0A09C2A068EC90060E589 /* cpusim */ = {
 			isa = PBXGroup;
 			children = (
+				08B0A0AA2A070F8F0060E589 /* alu.cpp */,
+				08B0A0A72A0690AA0060E589 /* alu.h */,
+				08B0A0A52A0690AA0060E589 /* clock.h */,
+				08B0A0A82A0690AA0060E589 /* cu.h */,
+				08B0A0A62A0690AA0060E589 /* registers.h */,
 				08B0A09D2A068EC90060E589 /* main.cpp */,
 			);
 			path = cpusim;
@@ -118,6 +129,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08B0A0AB2A070F8F0060E589 /* alu.cpp in Sources */,
 				08B0A09E2A068EC90060E589 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
