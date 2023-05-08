@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		08B0A09E2A068EC90060E589 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08B0A09D2A068EC90060E589 /* main.cpp */; };
 		08B0A0AB2A070F8F0060E589 /* alu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08B0A0AA2A070F8F0060E589 /* alu.cpp */; };
-		08B0A0B52A07D4DE0060E589 /* libfmt.9.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 08B0A0B42A07D4DE0060E589 /* libfmt.9.1.0.dylib */; };
 		08B0A0C32A08220C0060E589 /* dissasemble.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08B0A0C22A08220C0060E589 /* dissasemble.cpp */; };
+		08B0A0CB2A0876F40060E589 /* libfmt.9.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 08B0A0CA2A0876F40060E589 /* libfmt.9.1.0.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -33,12 +33,12 @@
 		08B0A0A72A0690AA0060E589 /* alu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = alu.h; sourceTree = "<group>"; };
 		08B0A0A82A0690AA0060E589 /* cu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cu.h; sourceTree = "<group>"; };
 		08B0A0AA2A070F8F0060E589 /* alu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = alu.cpp; sourceTree = "<group>"; };
-		08B0A0B42A07D4DE0060E589 /* libfmt.9.1.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfmt.9.1.0.dylib; path = cpusim/lib/libfmt.9.1.0.dylib; sourceTree = "<group>"; };
 		08B0A0BF2A07FE370060E589 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
 		08B0A0C22A08220C0060E589 /* dissasemble.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = dissasemble.cpp; sourceTree = "<group>"; };
 		08B0A0C62A0822220060E589 /* dissasemble.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dissasemble.h; sourceTree = "<group>"; };
 		08B0A0C82A08765E0060E589 /* include */ = {isa = PBXFileReference; lastKnownFileType = folder; path = include; sourceTree = "<group>"; };
 		08B0A0C92A08765F0060E589 /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; path = lib; sourceTree = "<group>"; };
+		08B0A0CA2A0876F40060E589 /* libfmt.9.1.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfmt.9.1.0.dylib; path = lib/libfmt.9.1.0.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,7 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				08B0A0B52A07D4DE0060E589 /* libfmt.9.1.0.dylib in Frameworks */,
+				08B0A0CB2A0876F40060E589 /* libfmt.9.1.0.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,7 +91,7 @@
 		08B0A0B32A07D4DE0060E589 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				08B0A0B42A07D4DE0060E589 /* libfmt.9.1.0.dylib */,
+				08B0A0CA2A0876F40060E589 /* libfmt.9.1.0.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

@@ -49,7 +49,7 @@ void Dissasembler::dissasemble(const char *filepath) {
     std::vector<uint8_t> first;
     if (std::ifstream fin{filepath, std::ios::hex }) {
         uint8_t buff;
-        while (fin >> buff) {
+        while (fin >> std::noskipws >> buff) {
             first.push_back(buff);
         }
     }
