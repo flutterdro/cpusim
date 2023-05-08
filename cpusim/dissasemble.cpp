@@ -17,8 +17,14 @@ void Dissasembler::loadInstructions() {
             for (int j = 0x0; j <= 0xF; j++) {
                 std::string instruction;
                 std::string buff;
+                int c = 0;
                 while (buff != "|") {
-                    instruction += buff + " ";
+                    if (c == 0) {
+                        instruction += fmt::format("{:<7}", buff);
+                        c++;
+                    } else {
+                        instruction += fmt::format("{:<8}", buff);
+                    }
                     load >> buff;
                     if (buff == "a16") {
                         adressInstructions.insert(i*0x10 + j);
@@ -47,18 +53,18 @@ void Dissasembler::dissasemble(const char *filepath) {
             first.push_back(buff);
         }
     }
-    for (int i = 0; i < first.size(); i++) {
+    for (int i = 0; i <= first.size(); i++) {
         if (adressInstructions.count(first[i])) {
-            hexf += fmt::format("{}{:#04x} {:#04x}\n", instructions[first[i]], first[i + 1], first[i + 2]);
+            hexf += fmt::format("{3:#06x}:    {0}{2:#04x}{1:02x}\n", instructions[first[i]], first[i + 1], first[i + 2], i);
             i += 2;
         } else if (data1bInstructions.count(first[i])) {
-            hexf += fmt::format("{}{:#04x}\n", instructions[first[i]], first[i + 1]);
+            hexf += fmt::format("{2:#06x}:    {0}{1:#04x}\n", instructions[first[i]], first[i + 1], i);
             i += 1;
         }else if (data2bInstructions.count(first[i])) {
-            hexf += fmt::format("{}{:#04x} {:#04x}\n", instructions[first[i]], first[i + 1], first[i + 2]);
+            hexf += fmt::format("{3:#06x}:    {0}{2:#04x}{1:02x}\n", instructions[first[i]], first[i + 1], first[i + 2], i);
             i += 2;
         } else {
-            hexf += fmt::format("{}\n", instructions[first[i]]);
+            hexf += fmt::format("{1:#06x}:    {0}\n", instructions[first[i]], i);
         }
     }
 }

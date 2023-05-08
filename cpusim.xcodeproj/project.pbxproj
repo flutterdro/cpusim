@@ -37,6 +37,8 @@
 		08B0A0BF2A07FE370060E589 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
 		08B0A0C22A08220C0060E589 /* dissasemble.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = dissasemble.cpp; sourceTree = "<group>"; };
 		08B0A0C62A0822220060E589 /* dissasemble.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dissasemble.h; sourceTree = "<group>"; };
+		08B0A0C82A08765E0060E589 /* include */ = {isa = PBXFileReference; lastKnownFileType = folder; path = include; sourceTree = "<group>"; };
+		08B0A0C92A08765F0060E589 /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; path = lib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,8 @@
 		08B0A0912A068EC90060E589 = {
 			isa = PBXGroup;
 			children = (
+				08B0A0C82A08765E0060E589 /* include */,
+				08B0A0C92A08765F0060E589 /* lib */,
 				08B0A0BF2A07FE370060E589 /* assets */,
 				08B0A09C2A068EC90060E589 /* cpusim */,
 				08B0A09B2A068EC90060E589 /* Products */,

@@ -14,7 +14,7 @@
 int main() {
     std::string hexf;
     Dissasembler diss;
-    diss.dissasemble("assets/invaders/invaders.h");
+    diss.dissasemble("assets/invaders/invaders");
     hexf = diss.getResult();
            
     fmt::print(hexf + '\n');
