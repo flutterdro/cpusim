@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		08AA6DAA2A124E820048ACDD /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08AA6DA92A124E820048ACDD /* test.cpp */; };
 		08B0A09E2A068EC90060E589 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08B0A09D2A068EC90060E589 /* main.cpp */; };
 		08B0A0AB2A070F8F0060E589 /* alu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08B0A0AA2A070F8F0060E589 /* alu.cpp */; };
 		08B0A0C32A08220C0060E589 /* dissasemble.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08B0A0C22A08220C0060E589 /* dissasemble.cpp */; };
 		08B0A0CB2A0876F40060E589 /* libfmt.9.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 08B0A0CA2A0876F40060E589 /* libfmt.9.1.0.dylib */; };
+		08B0A0CE2A0C151D0060E589 /* registers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08B0A0CD2A0C151D0060E589 /* registers.cpp */; };
+		08B0A0D62A0C1DA90060E589 /* cpu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08B0A0D42A0C1DA90060E589 /* cpu.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,6 +29,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		08AA6DA92A124E820048ACDD /* test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = test.cpp; sourceTree = "<group>"; };
 		08B0A09A2A068EC90060E589 /* cpusim */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cpusim; sourceTree = BUILT_PRODUCTS_DIR; };
 		08B0A09D2A068EC90060E589 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		08B0A0A52A0690AA0060E589 /* clock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = clock.h; sourceTree = "<group>"; };
@@ -39,6 +43,9 @@
 		08B0A0C82A08765E0060E589 /* include */ = {isa = PBXFileReference; lastKnownFileType = folder; path = include; sourceTree = "<group>"; };
 		08B0A0C92A08765F0060E589 /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; path = lib; sourceTree = "<group>"; };
 		08B0A0CA2A0876F40060E589 /* libfmt.9.1.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfmt.9.1.0.dylib; path = lib/libfmt.9.1.0.dylib; sourceTree = "<group>"; };
+		08B0A0CD2A0C151D0060E589 /* registers.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = registers.cpp; sourceTree = "<group>"; };
+		08B0A0D42A0C1DA90060E589 /* cpu.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = cpu.cpp; sourceTree = "<group>"; };
+		08B0A0D52A0C1DA90060E589 /* cpu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cpu.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,8 +89,12 @@
 				08B0A0A52A0690AA0060E589 /* clock.h */,
 				08B0A0A82A0690AA0060E589 /* cu.h */,
 				08B0A0A62A0690AA0060E589 /* registers.h */,
+				08B0A0CD2A0C151D0060E589 /* registers.cpp */,
 				08B0A0C22A08220C0060E589 /* dissasemble.cpp */,
 				08B0A0C62A0822220060E589 /* dissasemble.h */,
+				08B0A0D42A0C1DA90060E589 /* cpu.cpp */,
+				08B0A0D52A0C1DA90060E589 /* cpu.h */,
+				08AA6DA92A124E820048ACDD /* test.cpp */,
 			);
 			path = cpusim;
 			sourceTree = "<group>";
@@ -152,9 +163,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08B0A0D62A0C1DA90060E589 /* cpu.cpp in Sources */,
 				08B0A0AB2A070F8F0060E589 /* alu.cpp in Sources */,
 				08B0A09E2A068EC90060E589 /* main.cpp in Sources */,
+				08B0A0CE2A0C151D0060E589 /* registers.cpp in Sources */,
 				08B0A0C32A08220C0060E589 /* dissasemble.cpp in Sources */,
+				08AA6DAA2A124E820048ACDD /* test.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
