@@ -16,13 +16,13 @@
 #include <cinttypes>
 #include <fmt/format.h>
 
-class Dissasembler {
+class Disassembler {
 public:
-    Dissasembler();
-    void dissasemble(const char* filepath);
+    Disassembler();
+    void disassemble(const char* filepath);
     std::string getResult();
     
-private:
+    std::string oneInstr(uint8_t first, uint8_t second, uint8_t third, uint16_t pc);
     std::string hexf;
     
     std::unordered_set<uint8_t> adressInstructions;

@@ -8,7 +8,20 @@
 #include "cpu.h"
 
 CPU::CPU()
-: m_alu(m_registers), m_memory(UINT16_MAX, 0), m_pc(m_memory.begin()) {}
+: m_alu(m_registers), m_memory(0x5000, 0), m_pc(m_memory.begin()), m_sp(m_memory.begin()) {
+    for (int i = 0; i < m_out_port.size(); i++) {
+        m_out_port[i] = [this](uint8_t a){dummyFunco(a);};
+        m_in_port[i] = [this](){return dummyFunci();};
+    }
+}
+
+void CPU::dummyFunco(uint8_t a) {}
+uint8_t CPU::dummyFunci() {return 1;}
+
+void CPU::memoryWrite(uint16_t addr, uint8_t data) {
+    assert(addr > 0x1fff && "YOUUUUU ABSOLUTE BAFOON");
+    m_memory[addr] = data;
+}
 
 void CPU::loadMemory(const char *filename) {
     if (std::ifstream fin{filename, std::ios::hex }) {
@@ -22,12 +35,24 @@ void CPU::loadMemory(const char *filename) {
     }
 }
 
-void CPU::printContent() {
-    fmt::print("accumulator: {:d}, flags: {:b} \n", m_registers.a, static_cast<uint8_t>(m_registers.flags));
+void CPU::connectOutPort(int port_id, std::function<void(uint8_t)> device_action) {
+    m_out_port[port_id] = device_action;
 }
 
+std::vector<uint8_t>::iterator CPU::getMemoryIt(uint16_t address) {
+    return m_memory.begin() + address;
+}
+
+void CPU::connectInPort(int port_id, std::function<uint8_t(void)> device_action) {
+    m_in_port[port_id] = device_action;
+}
+
+
 void CPU::interupt(uint8_t opcode) {
-    if (interuptable) executeInstruction(opcode);
+    if (interuptable) {
+        interuptable = 0;
+        executeInstruction(opcode);
+    }
 }
 
 void CPU::executeNextInstruction() {
@@ -47,7 +72,7 @@ void CPU::executeInstruction(uint8_t opcode) {
             m_pc += 3;
             break;
         }
-        case 0x02:  m_memory[m_registers.bc] = m_registers.a;   m_pc += 1;      //STAX BC
+        case 0x02:  memoryWrite(m_registers.bc, m_registers.a); m_pc += 1;      //STAX BC
             break;
         case 0x03:  m_alu.inx(m_registers.bc);                  m_pc += 1;
             break;
@@ -59,7 +84,7 @@ void CPU::executeInstruction(uint8_t opcode) {
             break;
         case 0x07:  m_alu.rlc();                                m_pc += 1;
             break;
-        case 0x08:  break; // TODO: write a LOG class and here make a warning   //*NOP
+        case 0x08:  assert(false && "you suck");break; // TODO: write a LOG class and here make a warning   //*NOP
         case 0X09:  m_alu.dad(m_registers.bc);                  m_pc += 1;
             break;
         case 0x0a:  m_registers.a = m_memory[m_registers.bc];   m_pc += 1;      //LDAX BC
@@ -74,14 +99,14 @@ void CPU::executeInstruction(uint8_t opcode) {
             break;
         case 0x0f:  m_alu.rrc();                                m_pc += 1;
             break;
-        case 0x10:  break; // TODO: write a LOG class and here make a warning   //*NOP
+        case 0x10:  assert(false && "you suck");break; // TODO: write a LOG class and here make a warning   //*NOP
         case 0x11:  {                                                           //LXI DE, d16
             m_registers.d = *(m_pc + 2);
             m_registers.e = *(m_pc + 1);
             m_pc += 3;
             break;
         }
-        case 0x12:  m_memory[m_registers.de] = m_registers.a;   m_pc += 1;      //STAX DE
+        case 0x12:  memoryWrite(m_registers.de, m_registers.a); m_pc += 1;      //STAX DE
             break;
         case 0x13:  m_alu.inx(m_registers.de);                  m_pc += 1;
             break;
@@ -93,7 +118,7 @@ void CPU::executeInstruction(uint8_t opcode) {
             break;
         case 0x17:  m_alu.ral();                                m_pc += 1;
             break;
-        case 0x18:  break; // TODO: write a LOG class and here make a warning   //*NOP
+        case 0x18:  assert(false && "you suck");break; // TODO: write a LOG class and here make a warning   //*NOP
         case 0x19:  m_alu.dad(m_registers.de);                  m_pc += 1;
             break;
         case 0x1a:  m_registers.a = m_memory[m_registers.de];   m_pc += 1;      //LDAX DE
@@ -108,7 +133,7 @@ void CPU::executeInstruction(uint8_t opcode) {
             break;
         case 0x1f:  m_alu.rar();                                m_pc += 1;
             break;
-        case 0x20:  break; // TODO: write a LOG class and here make a warning   //*NOP
+        case 0x20:  assert(false && "you suck");break; // TODO: write a LOG class and here make a warning   //*NOP
         case 0x21:  {                                                           //LXI HL, d16
             m_registers.h = *(m_pc + 2);
             m_registers.l = *(m_pc + 1);
@@ -117,8 +142,8 @@ void CPU::executeInstruction(uint8_t opcode) {
         }
         case 0x22: {                                                            //SHLD a16
             uint16_t addr = concatenate(*(m_pc + 2), *(m_pc + 1));
-            m_memory[addr] = m_registers.l;
-            m_memory[addr + 1] = m_registers.h;
+            memoryWrite(addr, m_registers.l);
+            memoryWrite(addr + 1, m_registers.h);
             m_pc += 3;
             break;
         }
@@ -132,13 +157,13 @@ void CPU::executeInstruction(uint8_t opcode) {
             break;
         case 0x27:  m_alu.daa();                                m_pc += 1;
             break;
-        case 0x28:  break; // TODO: write a LOG class and here make a warning   //*NOP
+        case 0x28:  assert(false && "you suck");break; // TODO: write a LOG class and here make a warning   //*NOP
         case 0x29:  m_alu.dad(m_registers.hl);                  m_pc += 1;
             break;
         case 0x2a: {                                                            //LHLD a16
             uint16_t addr = concatenate(*(m_pc + 2), *(m_pc + 1));
-            m_registers.l = m_memory[addr + 1];
-            m_registers.h = m_memory[addr];
+            m_registers.l = m_memory[addr];
+            m_registers.h = m_memory[addr + 1];
             m_pc += 3;
             break;
         }
@@ -152,7 +177,7 @@ void CPU::executeInstruction(uint8_t opcode) {
             break;
         case 0x2f:  m_alu.cma();                                m_pc += 1;      //MVI L, d8
             break;
-        case 0x30:  break; // TODO: write a LOG class and here make a warning   //*NOP
+        case 0x30:  assert(false && "you suck");break; // TODO: write a LOG class and here make a warning   //*NOP
         case 0x31: {                                                            //LXI SP, d16
             uint16_t data = concatenate(*(m_pc + 2), *(m_pc + 1));
             m_sp = m_memory.begin() + data;
@@ -161,7 +186,7 @@ void CPU::executeInstruction(uint8_t opcode) {
         }
         case 0x32: {                                                            //STA a16
             uint16_t addr = concatenate(*(m_pc + 2), *(m_pc + 1));
-            m_memory[addr] = m_registers.a;
+            memoryWrite(addr, m_registers.a);
             m_pc += 3;
             break;
         }
@@ -171,11 +196,11 @@ void CPU::executeInstruction(uint8_t opcode) {
             break;
         case 0x35:  m_alu.dcr(m_memory[m_registers.hl]);        m_pc += 1;
             break;
-        case 0x36:  m_memory[m_registers.hl] = *(m_pc + 1);     m_pc += 2;      //MVI M, d8
+        case 0x36:  memoryWrite(m_registers.hl, *(m_pc + 1));     m_pc += 2;      //MVI M, d8
             break;
         case 0x37:  m_alu.stc();                                m_pc += 1;
             break;
-        case 0x38:  break; //TODO: write a LOG class and here make a warning//   *NOP
+        case 0x38:  assert(false && "you suck");break; //TODO: write a LOG class and here make a warning//   *NOP
         case 0x39:  m_alu.dad(m_sp - m_memory.begin());         m_pc += 1;
             break;
         case 0x3a:  {
@@ -293,21 +318,21 @@ void CPU::executeInstruction(uint8_t opcode) {
             break;
         case 0x6f:  m_registers.l = m_registers.a;              m_pc += 1;
             break;
-        case 0x70:  m_memory[m_registers.hl] = m_registers.b;   m_pc += 1;
+        case 0x70:  memoryWrite(m_registers.hl, m_registers.b); m_pc += 1;
             break;
-        case 0x71:  m_memory[m_registers.hl] = m_registers.c;   m_pc += 1;
+        case 0x71: memoryWrite(m_registers.hl, m_registers.c);  m_pc += 1;
             break;
-        case 0x72:  m_memory[m_registers.hl] = m_registers.d;   m_pc += 1;
+        case 0x72:  memoryWrite(m_registers.hl, m_registers.d); m_pc += 1;
             break;
-        case 0x73:  m_memory[m_registers.hl] = m_registers.e;   m_pc += 1;
+        case 0x73:  memoryWrite(m_registers.hl, m_registers.e); m_pc += 1;
             break;
-        case 0x74:  m_memory[m_registers.hl] = m_registers.h;   m_pc += 1;
+        case 0x74:  memoryWrite(m_registers.hl, m_registers.h); m_pc += 1;
             break;
-        case 0x75:  m_memory[m_registers.hl] = m_registers.l;   m_pc += 1;
+        case 0x75:  memoryWrite(m_registers.hl, m_registers.l); m_pc += 1;
             break;
         case 0x76:  halted = 1;                                 m_pc += 1;      //HLT <- reeeeeally~ important instruction
             break;
-        case 0x77:  m_memory[m_registers.hl] = m_registers.a;   m_pc += 1;
+        case 0x77:  memoryWrite(m_registers.hl, m_registers.a); m_pc += 1;
             break;
         case 0x78:  m_registers.a = m_registers.b;              m_pc += 1;
             break;
@@ -494,7 +519,7 @@ void CPU::executeInstruction(uint8_t opcode) {
             if (!(m_registers.flags & FlagRegister::Zero)) {
                 uint16_t addr = concatenate(*(m_pc + 2), *(m_pc + 1));
                 m_sp -= 1;
-                *m_sp = (m_pc + 3 - m_memory.begin()) >> 4;
+                *m_sp = (m_pc + 3 - m_memory.begin()) >> 8;
                 m_sp -= 1;
                 *m_sp = m_pc + 3 - m_memory.begin();
                 m_pc  = m_memory.begin() + addr;
@@ -515,9 +540,9 @@ void CPU::executeInstruction(uint8_t opcode) {
             break;
         case 0xc7:  {                                                           //RST 0
             m_sp -= 1;
-            *m_sp = (m_pc + 3 - m_memory.begin()) >> 4;
+            *m_sp = (m_pc - m_memory.begin()) >> 8;
             m_sp -= 1;
-            *m_sp = m_pc + 3 - m_memory.begin();
+            *m_sp = m_pc - m_memory.begin();
             m_pc = m_memory.begin();
             break;
         }
@@ -544,12 +569,12 @@ void CPU::executeInstruction(uint8_t opcode) {
             }
             break;
         }
-        case 0xcb:  break; // TODO: write a LOG class and here make a warning   //*JMP a16
+        case 0xcb:  assert(false && "you suck");break; // TODO: write a LOG class and here make a warning   //*JMP a16
         case 0xcc:  {                                                           //CZ a16
             if (m_registers.flags & FlagRegister::Zero) {
                 uint16_t addr = concatenate(*(m_pc + 2), *(m_pc + 1));
                 m_sp -= 1;
-                *m_sp = (m_pc + 3 - m_memory.begin()) >> 4;
+                *m_sp = (m_pc + 3 - m_memory.begin()) >> 8;
                 m_sp -= 1;
                 *m_sp = m_pc + 3 - m_memory.begin();
                 m_pc  = m_memory.begin() + addr;
@@ -561,7 +586,8 @@ void CPU::executeInstruction(uint8_t opcode) {
         case 0xcd:  {                                                           //CALL a16
             uint16_t addr = concatenate(*(m_pc + 2), *(m_pc + 1));
             m_sp -= 1;
-            *m_sp = (m_pc + 3 - m_memory.begin()) >> 4;
+            *m_sp = (m_pc + 3 - m_memory.begin()) >> 8;
+
             m_sp -= 1;
             *m_sp = m_pc + 3 - m_memory.begin();
             m_pc  = m_memory.begin() + addr;
@@ -571,9 +597,9 @@ void CPU::executeInstruction(uint8_t opcode) {
             break;
         case 0xcf:  {                                                           //RST 1
             m_sp -= 1;
-            *m_sp = (m_pc + 3 - m_memory.begin()) >> 4;
+            *m_sp = (m_pc - m_memory.begin()) >> 8;
             m_sp -= 1;
-            *m_sp = m_pc + 3 - m_memory.begin();
+            *m_sp = m_pc - m_memory.begin();
             m_pc = m_memory.begin() + 0x08 * 0x01;
             break;
         }
@@ -604,13 +630,13 @@ void CPU::executeInstruction(uint8_t opcode) {
             break;
         }
         //I'm actually not sure how it works
-        case 0xd3:  m_out_port[*(m_pc + 1)] = m_registers.a;        m_pc += 2;  //OUT d8
+        case 0xd3:  m_out_port[*(m_pc + 1)](m_registers.a);     m_pc += 2;  //OUT d8
             break;
         case 0xd4:   {                                                          //CNC a16
             if (!(m_registers.flags & FlagRegister::Carry)) {
                 uint16_t addr = concatenate(*(m_pc + 2), *(m_pc + 1));
                 m_sp -= 1;
-                *m_sp = (m_pc + 3 - m_memory.begin()) >> 4;
+                *m_sp = (m_pc + 3 - m_memory.begin()) >> 8;
                 m_sp -= 1;
                 *m_sp = m_pc + 3 - m_memory.begin();
                 m_pc  = m_memory.begin() + addr;
@@ -631,9 +657,9 @@ void CPU::executeInstruction(uint8_t opcode) {
             break;
         case 0xd7:  {                                                           //RST 2
             m_sp -= 1;
-            *m_sp = (m_pc + 3 - m_memory.begin()) >> 4;
+            *m_sp = (m_pc - m_memory.begin()) >> 8;
             m_sp -= 1;
-            *m_sp = m_pc + 3 - m_memory.begin();
+            *m_sp = m_pc - m_memory.begin();
             m_pc = m_memory.begin() + 0x08*0x02;
             break;
         }
@@ -646,7 +672,7 @@ void CPU::executeInstruction(uint8_t opcode) {
             }
             break;
         }
-        case 0xd9:  break; // TODO: write a LOG class and here make a warning   //*RET
+        case 0xd9:  assert(false && "you suck");break; // TODO: write a LOG class and here make a warning   //*RET
         case 0xda: {                                                            //JC a16
             if (m_registers.flags & FlagRegister::Carry) {
                 uint16_t addr = concatenate(*(m_pc + 2), *(m_pc + 1));
@@ -656,13 +682,13 @@ void CPU::executeInstruction(uint8_t opcode) {
             }
             break;
         }
-        case 0xdb:  m_registers.a = m_in_port[*(m_pc + 1)];     m_pc += 2;      //IN d8
+        case 0xdb:  m_registers.a = m_in_port[*(m_pc + 1)]();   m_pc += 2;      //IN d8
             break;
         case 0xdc:  {                                                           //CC a16
             if (m_registers.flags & FlagRegister::Carry) {
                 uint16_t addr = concatenate(*(m_pc + 2), *(m_pc + 1));
                 m_sp -= 1;
-                *m_sp = (m_pc + 3 - m_memory.begin()) >> 4;
+                *m_sp = (m_pc + 3 - m_memory.begin()) >> 8;
                 m_sp -= 1;
                 *m_sp = m_pc + 3 - m_memory.begin();
                 m_pc  = m_memory.begin() + addr;
@@ -671,14 +697,14 @@ void CPU::executeInstruction(uint8_t opcode) {
             }
             break;
         }
-        case 0xdd:  break; // TODO: write a LOG class and here make a warning   //*CALL a16
+        case 0xdd:  assert(false && "you suck");break; // TODO: write a LOG class and here make a warning   //*CALL a16
         case 0xde:  m_alu.sbb(*(m_pc + 1));                     m_pc += 2;
             break;
         case 0xdf:  {                                                           //RST 3
             m_sp -= 1;
-            *m_sp = (m_pc + 3 - m_memory.begin()) >> 4;
+            *m_sp = (m_pc - m_memory.begin()) >> 8;
             m_sp -= 1;
-            *m_sp = m_pc + 3 - m_memory.begin();
+            *m_sp = m_pc - m_memory.begin();
             m_pc = m_memory.begin() + 0x08 * 0x03;
             break;
         }
@@ -718,7 +744,7 @@ void CPU::executeInstruction(uint8_t opcode) {
             if (!(m_registers.flags & FlagRegister::Parity)) {
                 uint16_t addr = concatenate(*(m_pc + 2), *(m_pc + 1));
                 m_sp -= 1;
-                *m_sp = (m_pc + 3 - m_memory.begin()) >> 4;
+                *m_sp = (m_pc + 3 - m_memory.begin()) >> 8;
                 m_sp -= 1;
                 *m_sp = m_pc + 3 - m_memory.begin();
                 m_pc  = m_memory.begin() + addr;
@@ -739,9 +765,9 @@ void CPU::executeInstruction(uint8_t opcode) {
             break;
         case 0xe7:  {                                                           //RST 4
             m_sp -= 1;
-            *m_sp = (m_pc + 3 - m_memory.begin()) >> 4;
+            *m_sp = (m_pc - m_memory.begin()) >> 8;
             m_sp -= 1;
-            *m_sp = m_pc + 3 - m_memory.begin();
+            *m_sp = m_pc - m_memory.begin();
             m_pc = m_memory.begin() + 0x08*0x04;
             break;
         }
@@ -771,7 +797,7 @@ void CPU::executeInstruction(uint8_t opcode) {
             if (m_registers.flags & FlagRegister::Parity) {
                 uint16_t addr = concatenate(*(m_pc + 2), *(m_pc + 1));
                 m_sp -= 1;
-                *m_sp = (m_pc + 3 - m_memory.begin()) >> 4;
+                *m_sp = (m_pc + 3 - m_memory.begin()) >> 8;
                 m_sp -= 1;
                 *m_sp = m_pc + 3 - m_memory.begin();
                 m_pc  = m_memory.begin() + addr;
@@ -780,14 +806,14 @@ void CPU::executeInstruction(uint8_t opcode) {
             }
             break;
         }
-        case 0xed:  break; // TODO: write a LOG class and here make a warning   //*CALL a16
+        case 0xed:  assert(false && "you suck");break; // TODO: write a LOG class and here make a warning   //*CALL a16
         case 0xee:  m_alu.xra(*(m_pc + 1));                     m_pc += 2;
             break;
         case 0xef:  {                                                           //RST 3
             m_sp -= 1;
-            *m_sp = (m_pc + 3 - m_memory.begin()) >> 4;
+            *m_sp = (m_pc - m_memory.begin()) >> 8;
             m_sp -= 1;
-            *m_sp = m_pc + 3 - m_memory.begin();
+            *m_sp = m_pc - m_memory.begin();
             m_pc = m_memory.begin() + 0x08 * 0x05;
             break;
         }
@@ -823,7 +849,7 @@ void CPU::executeInstruction(uint8_t opcode) {
             if (!(m_registers.flags & FlagRegister::Sign)) {
                 uint16_t addr = concatenate(*(m_pc + 2), *(m_pc + 1));
                 m_sp -= 1;
-                *m_sp = (m_pc + 3 - m_memory.begin()) >> 4;
+                *m_sp = (m_pc + 3 - m_memory.begin()) >> 8;
                 m_sp -= 1;
                 *m_sp = m_pc + 3 - m_memory.begin();
                 m_pc  = m_memory.begin() + addr;
@@ -844,9 +870,9 @@ void CPU::executeInstruction(uint8_t opcode) {
             break;
         case 0xf7:  {                                                           //RST 6
             m_sp -= 1;
-            *m_sp = (m_pc + 3 - m_memory.begin()) >> 4;
+            *m_sp = (m_pc - m_memory.begin()) >> 8;
             m_sp -= 1;
-            *m_sp = m_pc + 3 - m_memory.begin();
+            *m_sp = m_pc - m_memory.begin();
             m_pc = m_memory.begin() + 0x08*0x06;
             break;
         }
@@ -876,7 +902,7 @@ void CPU::executeInstruction(uint8_t opcode) {
             if (m_registers.flags & FlagRegister::Sign) {
                 uint16_t addr = concatenate(*(m_pc + 2), *(m_pc + 1));
                 m_sp -= 1;
-                *m_sp = (m_pc + 3 - m_memory.begin()) >> 4;
+                *m_sp = (m_pc + 3 - m_memory.begin()) >> 8;
                 m_sp -= 1;
                 *m_sp = m_pc + 3 - m_memory.begin();
                 m_pc  = m_memory.begin() + addr;
@@ -885,14 +911,14 @@ void CPU::executeInstruction(uint8_t opcode) {
             }
             break;
         }
-        case 0xfd:  break; // TODO: write a LOG class and here make a warning   //*CALL a16
+        case 0xfd:  assert(false && "you suck");break; // TODO: write a LOG class and here make a warning   //*CALL a16
         case 0xfe:  m_alu.cmp(*(m_pc + 1));                     m_pc += 2;
             break;
         case 0xff:  {                                                           //RST 7
             m_sp -= 1;
-            *m_sp = (m_pc + 3 - m_memory.begin()) >> 4;
+            *m_sp = (m_pc - m_memory.begin()) >> 8;
             m_sp -= 1;
-            *m_sp = m_pc + 3 - m_memory.begin();
+            *m_sp = m_pc - m_memory.begin();
             m_pc = m_memory.begin() + 0x08 * 0x07;
             break;
         }

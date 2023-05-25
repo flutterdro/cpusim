@@ -165,34 +165,46 @@ void ArithmeticLogicUnit::cmp(uint8_t operand) {
 }
 
 void ArithmeticLogicUnit::rlc() {
+//    fmt::print("rlc\n");
+//    fmt::print("before: {:d} {:08b}\n", (m_registers.flags & FlagRegister::Carry) >> 7, m_registers.a);
     //I actually am a shitcoder in fact
     //uint8_t tmp = (m_registers.flags & FlagRegister::Carry) >> 7;
     m_registers.flags &= ~FlagRegister::Carry;
     m_registers.flags |= static_cast<FlagRegister>(m_registers.a & 0b10000000);
     m_registers.a = m_registers.a << 1 | m_registers.a >> 7;
     //m_registers.a |= tmp;
+//    fmt::print("after:  {:d} {:08b}\n", (m_registers.flags & FlagRegister::Carry) >> 7, m_registers.a);
 }
 
 void ArithmeticLogicUnit::rrc() {
+//    fmt::print("rrc\n");
+//    fmt::print("before: {:d} {:08b}\n", (m_registers.flags & FlagRegister::Carry) >> 7, m_registers.a);
     m_registers.flags &= ~FlagRegister::Carry;
     m_registers.flags |= static_cast<FlagRegister>((m_registers.a & 0b00000001) << 7);
     m_registers.a = m_registers.a >> 1 | m_registers.a << 7;
+//    fmt::print("after:  {:d} {:08b}\n", (m_registers.flags & FlagRegister::Carry) >> 7, m_registers.a);
 }
 
 void ArithmeticLogicUnit::ral() {
-    uint8_t tmp = (m_registers.flags & FlagRegister::Carry) >> 7;
+//    fmt::print("ral\n");
+//    fmt::print("before: {:d} {:08b}\n", (m_registers.flags & FlagRegister::Carry) >> 7, m_registers.a);
+    uint8_t tmp = (m_registers.flags & FlagRegister::Carry);
     m_registers.flags &= ~FlagRegister::Carry;
     m_registers.flags |= static_cast<FlagRegister>(m_registers.a & 0b10000000);
     m_registers.a = m_registers.a << 1;
-    m_registers.a |= tmp;
+    m_registers.a |= tmp >> 7;
+//    fmt::print("after:  {:d} {:08b}\n", (m_registers.flags & FlagRegister::Carry) >> 7, m_registers.a);
 }
 
 void ArithmeticLogicUnit::rar() {
+//    fmt::print("rar\n");
+//    fmt::print("before: {:d} {:08b}\n", (m_registers.flags & FlagRegister::Carry) >> 7, m_registers.a);
     uint8_t tmp = (m_registers.flags & FlagRegister::Carry);
     m_registers.flags &= ~FlagRegister::Carry;
     m_registers.flags |= static_cast<FlagRegister>((m_registers.a & 0b00000001) << 7);
     m_registers.a = m_registers.a >> 1;
     m_registers.a |= tmp;
+//    fmt::print("after:  {:d} {:08b}\n", (m_registers.flags & FlagRegister::Carry) >> 7, m_registers.a);
 }
 
 void ArithmeticLogicUnit::dad(uint16_t operand) {
@@ -258,9 +270,10 @@ void ArithmeticLogicUnit::daa() {
     m_registers.flags &= ~FlagRegister::Carry;
     if ((m_registers.a & 0b00001111) > 0x09) {
         m_registers.a += 0x06;
+        m_registers.flags |= FlagRegister::AuxilaryCarry;
     }
     if (((m_registers.a & 0b11110000) >> 4) > 0x09) {
-        m_registers.a += 0x06;
+        m_registers.a += 0x60;
         m_registers.flags |= FlagRegister::Carry;
     }
 }

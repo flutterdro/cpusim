@@ -5,13 +5,13 @@
 //  Created by flutterdro on 07.05.2023.
 //
 
-#include "dissasemble.h"
+#include "disassemble.h"
 
-Dissasembler::Dissasembler() {
+Disassembler::Disassembler() {
     loadInstructions();
 }
 
-void Dissasembler::loadInstructions() {
+void Disassembler::loadInstructions() {
     if (std::ifstream load{"assets/instructionset.in"}) {
         for (int i = 0x0; i <= 0xF; i++) {
             for (int j = 0x0; j <= 0xF; j++) {
@@ -45,7 +45,21 @@ void Dissasembler::loadInstructions() {
     }
 }
 
-void Dissasembler::dissasemble(const char *filepath) {
+std::string Disassembler::oneInstr(uint8_t first, uint8_t second, uint8_t third, uint16_t pc) {
+    std::string instr;
+    if (adressInstructions.count(first)) {
+        instr = fmt::format("{3:#06x}:    {0}{2:#04x}{1:02x}\n", instructions[first], second, third, pc);
+    } else if (data1bInstructions.count(first)) {
+        instr = fmt::format("{2:#06x}:    {0}{1:#04x}\n", instructions[first], second, pc);
+    }else if (data2bInstructions.count(first)) {
+        instr = fmt::format("{3:#06x}:    {0}{2:#04x}{1:02x}\n", instructions[first], second, third, pc);
+    } else {
+        instr = fmt::format("{1:#06x}:    {0}\n", instructions[first], pc);
+    }
+    return instr;
+}
+
+void Disassembler::disassemble(const char *filepath) {
     std::vector<uint8_t> first;
     if (std::ifstream fin{filepath, std::ios::hex }) {
         uint8_t buff;
@@ -69,6 +83,6 @@ void Dissasembler::dissasemble(const char *filepath) {
     }
 }
 
-std::string Dissasembler::getResult() {
+std::string Disassembler::getResult() {
     return hexf;
 }

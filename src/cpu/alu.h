@@ -3,6 +3,7 @@
 
 #include <type_traits>
 #include <cinttypes>
+#include <fmt/format.h>
 #include "registers.h"
 
 class ArithmeticLogicUnit {

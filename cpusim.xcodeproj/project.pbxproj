@@ -7,13 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		08AA6DAA2A124E820048ACDD /* test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08AA6DA92A124E820048ACDD /* test.cpp */; };
-		08B0A09E2A068EC90060E589 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08B0A09D2A068EC90060E589 /* main.cpp */; };
+		087DB7082A17D0DB003C929C /* glad.c in Sources */ = {isa = PBXBuildFile; fileRef = 087DB7072A17D0DB003C929C /* glad.c */; };
+		087DB70B2A17D39A003C929C /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 087DB70A2A17D39A003C929C /* libglfw.3.3.dylib */; };
+		087DB7122A1A7DBC003C929C /* keyboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 087DB70F2A1A7DBB003C929C /* keyboard.cpp */; };
+		087DB7132A1A7DBC003C929C /* screen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 087DB7102A1A7DBB003C929C /* screen.cpp */; };
+		08A690C32A177225002CB6C2 /* space-invaders.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08A690C12A177225002CB6C2 /* space-invaders.cpp */; };
 		08B0A0AB2A070F8F0060E589 /* alu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08B0A0AA2A070F8F0060E589 /* alu.cpp */; };
-		08B0A0C32A08220C0060E589 /* dissasemble.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08B0A0C22A08220C0060E589 /* dissasemble.cpp */; };
+		08B0A0C32A08220C0060E589 /* disassemble.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08B0A0C22A08220C0060E589 /* disassemble.cpp */; };
 		08B0A0CB2A0876F40060E589 /* libfmt.9.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 08B0A0CA2A0876F40060E589 /* libfmt.9.1.0.dylib */; };
 		08B0A0CE2A0C151D0060E589 /* registers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08B0A0CD2A0C151D0060E589 /* registers.cpp */; };
 		08B0A0D62A0C1DA90060E589 /* cpu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08B0A0D42A0C1DA90060E589 /* cpu.cpp */; };
+		08D2A3732A1C26BC00714E0D /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08D2A3722A1C26BC00714E0D /* IOKit.framework */; };
+		08D2A3752A1C26C700714E0D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08D2A3742A1C26C700714E0D /* Cocoa.framework */; };
+		08D2A3772A1C26CC00714E0D /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08D2A3762A1C26CC00714E0D /* OpenGL.framework */; };
+		08D2A37C2A1C295F00714E0D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08D2A37B2A1C295F00714E0D /* main.cpp */; };
+		08D2A3AD2A1D5A4C00714E0D /* imgui_widgets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08D2A3A02A1D5A4C00714E0D /* imgui_widgets.cpp */; };
+		08D2A3AE2A1D5A4C00714E0D /* imgui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08D2A3A42A1D5A4C00714E0D /* imgui.cpp */; };
+		08D2A3AF2A1D5A4C00714E0D /* imgui_impl_opengl3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08D2A3A72A1D5A4C00714E0D /* imgui_impl_opengl3.cpp */; };
+		08D2A3B02A1D5A4C00714E0D /* imgui_tables.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08D2A3A92A1D5A4C00714E0D /* imgui_tables.cpp */; };
+		08D2A3B12A1D5A4C00714E0D /* imgui_impl_glfw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08D2A3AA2A1D5A4C00714E0D /* imgui_impl_glfw.cpp */; };
+		08D2A3B22A1D5A4C00714E0D /* imgui_demo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08D2A3AB2A1D5A4C00714E0D /* imgui_demo.cpp */; };
+		08D2A3B32A1D5A4C00714E0D /* imgui_draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08D2A3AC2A1D5A4C00714E0D /* imgui_draw.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,23 +43,48 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		08AA6DA92A124E820048ACDD /* test.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = test.cpp; sourceTree = "<group>"; };
+		087DB7072A17D0DB003C929C /* glad.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = glad.c; sourceTree = "<group>"; };
+		087DB70A2A17D39A003C929C /* libglfw.3.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.3.dylib; path = lib/libglfw.3.3.dylib; sourceTree = "<group>"; };
+		087DB70E2A1A7DBB003C929C /* keyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = keyboard.h; sourceTree = "<group>"; };
+		087DB70F2A1A7DBB003C929C /* keyboard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = keyboard.cpp; sourceTree = "<group>"; };
+		087DB7102A1A7DBB003C929C /* screen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = screen.cpp; sourceTree = "<group>"; };
+		087DB7112A1A7DBB003C929C /* screen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = screen.h; sourceTree = "<group>"; };
+		08A690C12A177225002CB6C2 /* space-invaders.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "space-invaders.cpp"; sourceTree = "<group>"; };
+		08A690C22A177225002CB6C2 /* space-invaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "space-invaders.h"; sourceTree = "<group>"; };
+		08AA6DAC2A159D490048ACDD /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		08B0A09A2A068EC90060E589 /* cpusim */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cpusim; sourceTree = BUILT_PRODUCTS_DIR; };
-		08B0A09D2A068EC90060E589 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		08B0A0A52A0690AA0060E589 /* clock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = clock.h; sourceTree = "<group>"; };
 		08B0A0A62A0690AA0060E589 /* registers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = registers.h; sourceTree = "<group>"; };
 		08B0A0A72A0690AA0060E589 /* alu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = alu.h; sourceTree = "<group>"; };
-		08B0A0A82A0690AA0060E589 /* cu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cu.h; sourceTree = "<group>"; };
 		08B0A0AA2A070F8F0060E589 /* alu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = alu.cpp; sourceTree = "<group>"; };
 		08B0A0BF2A07FE370060E589 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
-		08B0A0C22A08220C0060E589 /* dissasemble.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = dissasemble.cpp; sourceTree = "<group>"; };
-		08B0A0C62A0822220060E589 /* dissasemble.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dissasemble.h; sourceTree = "<group>"; };
+		08B0A0C22A08220C0060E589 /* disassemble.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = disassemble.cpp; sourceTree = "<group>"; };
+		08B0A0C62A0822220060E589 /* disassemble.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = disassemble.h; sourceTree = "<group>"; };
 		08B0A0C82A08765E0060E589 /* include */ = {isa = PBXFileReference; lastKnownFileType = folder; path = include; sourceTree = "<group>"; };
 		08B0A0C92A08765F0060E589 /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; path = lib; sourceTree = "<group>"; };
 		08B0A0CA2A0876F40060E589 /* libfmt.9.1.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfmt.9.1.0.dylib; path = lib/libfmt.9.1.0.dylib; sourceTree = "<group>"; };
 		08B0A0CD2A0C151D0060E589 /* registers.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = registers.cpp; sourceTree = "<group>"; };
 		08B0A0D42A0C1DA90060E589 /* cpu.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = cpu.cpp; sourceTree = "<group>"; };
 		08B0A0D52A0C1DA90060E589 /* cpu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cpu.h; sourceTree = "<group>"; };
+		08D2A3722A1C26BC00714E0D /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		08D2A3742A1C26C700714E0D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		08D2A3762A1C26CC00714E0D /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		08D2A37B2A1C295F00714E0D /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		08D2A39D2A1D5A4C00714E0D /* imgui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imgui.h; sourceTree = "<group>"; };
+		08D2A39E2A1D5A4C00714E0D /* imstb_textedit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imstb_textedit.h; sourceTree = "<group>"; };
+		08D2A39F2A1D5A4C00714E0D /* imconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imconfig.h; sourceTree = "<group>"; };
+		08D2A3A02A1D5A4C00714E0D /* imgui_widgets.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = imgui_widgets.cpp; sourceTree = "<group>"; };
+		08D2A3A12A1D5A4C00714E0D /* imstb_truetype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imstb_truetype.h; sourceTree = "<group>"; };
+		08D2A3A22A1D5A4C00714E0D /* imgui_impl_opengl3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imgui_impl_opengl3.h; sourceTree = "<group>"; };
+		08D2A3A32A1D5A4C00714E0D /* imgui_impl_opengl3_loader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imgui_impl_opengl3_loader.h; sourceTree = "<group>"; };
+		08D2A3A42A1D5A4C00714E0D /* imgui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = imgui.cpp; sourceTree = "<group>"; };
+		08D2A3A52A1D5A4C00714E0D /* imgui_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imgui_internal.h; sourceTree = "<group>"; };
+		08D2A3A62A1D5A4C00714E0D /* imgui_impl_glfw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imgui_impl_glfw.h; sourceTree = "<group>"; };
+		08D2A3A72A1D5A4C00714E0D /* imgui_impl_opengl3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = imgui_impl_opengl3.cpp; sourceTree = "<group>"; };
+		08D2A3A82A1D5A4C00714E0D /* imstb_rectpack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imstb_rectpack.h; sourceTree = "<group>"; };
+		08D2A3A92A1D5A4C00714E0D /* imgui_tables.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = imgui_tables.cpp; sourceTree = "<group>"; };
+		08D2A3AA2A1D5A4C00714E0D /* imgui_impl_glfw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = imgui_impl_glfw.cpp; sourceTree = "<group>"; };
+		08D2A3AB2A1D5A4C00714E0D /* imgui_demo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = imgui_demo.cpp; sourceTree = "<group>"; };
+		08D2A3AC2A1D5A4C00714E0D /* imgui_draw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = imgui_draw.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +92,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08D2A3772A1C26CC00714E0D /* OpenGL.framework in Frameworks */,
+				08D2A3752A1C26C700714E0D /* Cocoa.framework in Frameworks */,
+				08D2A3732A1C26BC00714E0D /* IOKit.framework in Frameworks */,
+				087DB70B2A17D39A003C929C /* libglfw.3.3.dylib in Frameworks */,
 				08B0A0CB2A0876F40060E589 /* libfmt.9.1.0.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -60,13 +103,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		087DB7052A17BE6B003C929C /* cpu */ = {
+			isa = PBXGroup;
+			children = (
+				08B0A0AA2A070F8F0060E589 /* alu.cpp */,
+				08B0A0A72A0690AA0060E589 /* alu.h */,
+				08B0A0A62A0690AA0060E589 /* registers.h */,
+				08B0A0CD2A0C151D0060E589 /* registers.cpp */,
+				08B0A0C22A08220C0060E589 /* disassemble.cpp */,
+				08B0A0C62A0822220060E589 /* disassemble.h */,
+				08B0A0D42A0C1DA90060E589 /* cpu.cpp */,
+				08B0A0D52A0C1DA90060E589 /* cpu.h */,
+			);
+			path = cpu;
+			sourceTree = "<group>";
+		};
+		087DB70D2A1A7D2A003C929C /* io */ = {
+			isa = PBXGroup;
+			children = (
+				087DB70F2A1A7DBB003C929C /* keyboard.cpp */,
+				087DB70E2A1A7DBB003C929C /* keyboard.h */,
+				087DB7102A1A7DBB003C929C /* screen.cpp */,
+				087DB7112A1A7DBB003C929C /* screen.h */,
+			);
+			path = io;
+			sourceTree = "<group>";
+		};
 		08B0A0912A068EC90060E589 = {
 			isa = PBXGroup;
 			children = (
+				08D2A39C2A1D5A4C00714E0D /* vendor */,
+				08AA6DAC2A159D490048ACDD /* CMakeLists.txt */,
 				08B0A0C82A08765E0060E589 /* include */,
 				08B0A0C92A08765F0060E589 /* lib */,
 				08B0A0BF2A07FE370060E589 /* assets */,
-				08B0A09C2A068EC90060E589 /* cpusim */,
+				08B0A09C2A068EC90060E589 /* src */,
 				08B0A09B2A068EC90060E589 /* Products */,
 				08B0A0B32A07D4DE0060E589 /* Frameworks */,
 			);
@@ -80,31 +151,52 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		08B0A09C2A068EC90060E589 /* cpusim */ = {
+		08B0A09C2A068EC90060E589 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				08B0A09D2A068EC90060E589 /* main.cpp */,
-				08B0A0AA2A070F8F0060E589 /* alu.cpp */,
-				08B0A0A72A0690AA0060E589 /* alu.h */,
-				08B0A0A52A0690AA0060E589 /* clock.h */,
-				08B0A0A82A0690AA0060E589 /* cu.h */,
-				08B0A0A62A0690AA0060E589 /* registers.h */,
-				08B0A0CD2A0C151D0060E589 /* registers.cpp */,
-				08B0A0C22A08220C0060E589 /* dissasemble.cpp */,
-				08B0A0C62A0822220060E589 /* dissasemble.h */,
-				08B0A0D42A0C1DA90060E589 /* cpu.cpp */,
-				08B0A0D52A0C1DA90060E589 /* cpu.h */,
-				08AA6DA92A124E820048ACDD /* test.cpp */,
+				087DB70D2A1A7D2A003C929C /* io */,
+				087DB7072A17D0DB003C929C /* glad.c */,
+				08D2A37B2A1C295F00714E0D /* main.cpp */,
+				087DB7052A17BE6B003C929C /* cpu */,
+				08A690C12A177225002CB6C2 /* space-invaders.cpp */,
+				08A690C22A177225002CB6C2 /* space-invaders.h */,
 			);
-			path = cpusim;
+			path = src;
 			sourceTree = "<group>";
 		};
 		08B0A0B32A07D4DE0060E589 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				08D2A3762A1C26CC00714E0D /* OpenGL.framework */,
+				08D2A3742A1C26C700714E0D /* Cocoa.framework */,
+				08D2A3722A1C26BC00714E0D /* IOKit.framework */,
+				087DB70A2A17D39A003C929C /* libglfw.3.3.dylib */,
 				08B0A0CA2A0876F40060E589 /* libfmt.9.1.0.dylib */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		08D2A39C2A1D5A4C00714E0D /* vendor */ = {
+			isa = PBXGroup;
+			children = (
+				08D2A39D2A1D5A4C00714E0D /* imgui.h */,
+				08D2A39E2A1D5A4C00714E0D /* imstb_textedit.h */,
+				08D2A39F2A1D5A4C00714E0D /* imconfig.h */,
+				08D2A3A02A1D5A4C00714E0D /* imgui_widgets.cpp */,
+				08D2A3A12A1D5A4C00714E0D /* imstb_truetype.h */,
+				08D2A3A22A1D5A4C00714E0D /* imgui_impl_opengl3.h */,
+				08D2A3A32A1D5A4C00714E0D /* imgui_impl_opengl3_loader.h */,
+				08D2A3A42A1D5A4C00714E0D /* imgui.cpp */,
+				08D2A3A52A1D5A4C00714E0D /* imgui_internal.h */,
+				08D2A3A62A1D5A4C00714E0D /* imgui_impl_glfw.h */,
+				08D2A3A72A1D5A4C00714E0D /* imgui_impl_opengl3.cpp */,
+				08D2A3A82A1D5A4C00714E0D /* imstb_rectpack.h */,
+				08D2A3A92A1D5A4C00714E0D /* imgui_tables.cpp */,
+				08D2A3AA2A1D5A4C00714E0D /* imgui_impl_glfw.cpp */,
+				08D2A3AB2A1D5A4C00714E0D /* imgui_demo.cpp */,
+				08D2A3AC2A1D5A4C00714E0D /* imgui_draw.cpp */,
+			);
+			path = vendor;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,12 +255,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08A690C32A177225002CB6C2 /* space-invaders.cpp in Sources */,
+				08D2A3B02A1D5A4C00714E0D /* imgui_tables.cpp in Sources */,
+				087DB7132A1A7DBC003C929C /* screen.cpp in Sources */,
+				08D2A37C2A1C295F00714E0D /* main.cpp in Sources */,
+				08D2A3AD2A1D5A4C00714E0D /* imgui_widgets.cpp in Sources */,
 				08B0A0D62A0C1DA90060E589 /* cpu.cpp in Sources */,
+				08D2A3AE2A1D5A4C00714E0D /* imgui.cpp in Sources */,
+				08D2A3B32A1D5A4C00714E0D /* imgui_draw.cpp in Sources */,
+				08D2A3B12A1D5A4C00714E0D /* imgui_impl_glfw.cpp in Sources */,
+				08D2A3B22A1D5A4C00714E0D /* imgui_demo.cpp in Sources */,
 				08B0A0AB2A070F8F0060E589 /* alu.cpp in Sources */,
-				08B0A09E2A068EC90060E589 /* main.cpp in Sources */,
 				08B0A0CE2A0C151D0060E589 /* registers.cpp in Sources */,
-				08B0A0C32A08220C0060E589 /* dissasemble.cpp in Sources */,
-				08AA6DAA2A124E820048ACDD /* test.cpp in Sources */,
+				08B0A0C32A08220C0060E589 /* disassemble.cpp in Sources */,
+				087DB7082A17D0DB003C929C /* glad.c in Sources */,
+				08D2A3AF2A1D5A4C00714E0D /* imgui_impl_opengl3.cpp in Sources */,
+				087DB7122A1A7DBC003C929C /* keyboard.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,7 +328,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/include";
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/include",
+					"$(PROJECT_DIR)/vendor",
+				);
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/lib";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -281,7 +386,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/include";
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/include",
+					"$(PROJECT_DIR)/vendor",
+				);
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/lib";
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -294,12 +402,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/include";
-				LD_RUNPATH_SEARCH_PATHS = "$(PROJECT_DIR)/lib";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/lib",
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/include",
+					"$(PROJECT_DIR)/vendor",
 				);
+				LD_RUNPATH_SEARCH_PATHS = "$(PROJECT_DIR)/lib";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/lib";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -308,12 +416,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/include";
-				LD_RUNPATH_SEARCH_PATHS = "$(PROJECT_DIR)/lib";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/lib",
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/include",
+					"$(PROJECT_DIR)/vendor",
 				);
+				LD_RUNPATH_SEARCH_PATHS = "$(PROJECT_DIR)/lib";
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/lib";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
